@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedHashMap;
 
 /**
@@ -195,7 +201,35 @@ public class Series {
 	// Model these after the object IO routines of Lab 4
 	// "Hard code" the name of the data file for this to be "StarTrek.dat"
 	
+	public String toString() {
+		String attributesAsString = "Series: " + this.title + ", " + this.startYear
+				+ "-" + this.endYear + "\n"	+ this.episodeMap;
+		return (attributesAsString);
+	}
+	
+	public static Series LoadSeries(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
+		filename = "StarTrek.dat";
+		FileInputStream fileInputStream = new FileInputStream(filename);
+		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+		Series series = (Series) objectInputStream.readObject();
+		objectInputStream.close();
+		return series;
+	}
+	
+	public static void SaveSeries(String filename, Series series) throws FileNotFoundException, IOException{
+		filename = "StarTrek.dat";
+		FileOutputStream fileOutputStream = new FileOutputStream(filename);
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+		fileOutputStream);
+		objectOutputStream.writeObject(series);
+		objectOutputStream.close();
+	}
+	
 	// TODO:  Add method for printing to the console
 	// This should print all data of the Series object to the console
 	// The formatting is up to you but should be intuitive to the grader
+	
+	public static void PrintSeries(Series series){
+		System.out.println(series);
+	}
 }
