@@ -27,7 +27,7 @@ import com.sun.glass.events.KeyEvent;
  * @version 1.0
  *
  */
-public class SeriesInputWindow extends JFrame {
+public class SeriesInputWindow extends JFrame{
 	private static final long serialVersionUID = 2L;
 
 	/** Button to click to add new episode to the episode list based on filled text fields. */
@@ -74,7 +74,7 @@ public class SeriesInputWindow extends JFrame {
 		jmiLoad.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// TODO: fix this... Series.LoadSeries("StarTrek.dat");
 				
 			}
 		});
@@ -109,7 +109,7 @@ public class SeriesInputWindow extends JFrame {
 		PrintButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO Correct so that when the button is pressed it will print
+				Series.PrintSeries(new Series());
 			}
 		});
 		
